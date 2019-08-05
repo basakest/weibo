@@ -98,12 +98,20 @@ class UsersController extends Controller
         $to = $user->email;
         $subject = "感谢注册 Weibo 应用！请确认你的邮箱。";
         //本地接收邮件
-        //Mail::send($view, $data, function ($message) use ($from, $name, $to, $subject){
-        //    $message->from($from, $name)->to($to)->subject($subject);
-        //});
-        Mail::send($view, $data, function ($message) use ($to, $subject) {
-            $message->to($to)->subject($subject);
+        Mail::send($view, $data, function ($message) use ($from, $name, $to, $subject){
+            $message->from($from, $name)->to($to)->subject($subject);
         });
+        //Mail::send($view, $data, function ($message) use ($to, $subject) {
+        //    $message->to($to)->subject($subject);
+        //});
+        /*
+        MAIL_DRIVER=smtp
+        MAIL_HOST=smtp.qq.com
+        MAIL_PORT=25
+        MAIL_USERNAME=1652759879@qq.com
+        MAIL_PASSWORD=lvcwsakbqjtfdabj
+        MAIL_ENCRYPTION=tls
+        */
     }
 
     public function confirmEmail($token)
